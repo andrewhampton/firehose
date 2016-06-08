@@ -14,9 +14,15 @@ module Firehose
     autoload :Channel,          'firehose/server/channel'
     autoload :App,              'firehose/server/app'
     autoload :Redis,            'firehose/server/redis'
+    autoload :Metrics,          'firehose/server/metrics'
+    autoload :MetricsCollector, 'firehose/server/metrics_collector'
 
     def self.redis
       @redis ||= Redis.new
+    end
+
+    def self.metrics
+      @metrics ||= Firehose::Server::Metrics::TimeSeries.new
     end
   end
 end
