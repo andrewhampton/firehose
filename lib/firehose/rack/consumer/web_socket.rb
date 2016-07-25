@@ -60,7 +60,7 @@ module Firehose
           def message(event)
             msg = parse_message(event)
             seq = last_message_sequence(msg)
-            puts "params: #{params}, req: #{@req}, req.params: #{@req.params}"
+            puts "req: #{@req.inspect}, req.params: #{@req.params.inspect}"
             if msg[:ping] == 'PING'
               Firehose.logger.debug "WS ping received, sending pong"
               send_message pong: "PONG"
