@@ -13,6 +13,7 @@ module Firehose
       end
 
       def initialize(channel_key, sequence: 0, params: {}, timeout: nil)
+        puts "initializing subscription with #{params}"
         @redis        = self.class.redis
         @subscriber   = self.class.subscriber
         @sequence     = sequence
@@ -32,6 +33,7 @@ module Firehose
       end
 
       def on_message(message)
+        puts "processing message with #{message}"
         message_filter.process(message)
       end
 

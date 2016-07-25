@@ -61,6 +61,7 @@ module Firehose
             msg = parse_message(event)
             seq = last_message_sequence(msg)
             params = msg[:params]
+            puts "params: #{params}, req: #{req}, req.params: #{req.params}"
             if msg[:ping] == 'PING'
               Firehose.logger.debug "WS ping received, sending pong"
               send_message pong: "PONG"
